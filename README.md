@@ -1,1 +1,1 @@
-# solar-system
+# Mini project solar system
