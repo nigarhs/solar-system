@@ -1,0 +1,38 @@
+body {
+    background-image: url(./images/galaxy.gif);
+}
+
+header {
+    text-align: center;
+    color: white;
+
+    .select-planet {
+        margin: 50px 0 25px 0;
+    }
+}
+
+input {
+    padding: 10px;
+    width: 180px;
+
+}
+
+select {
+    padding: 10px;
+    width: 130px;
+}
+
+button {
+    padding: 10px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.374);
+}
+
+.background {
+    background-color: rgb(255, 255, 255 , 0.15);
+    text-align: center;
+}
+
+.planet-image {
+    padding: 50px;
+}

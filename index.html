@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar System: Document Object Model:30 Days Of JavaScript</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Calculate a weight of an object on a planet</h1>
+
+      <div class="select-planet">
+        <input type="text" id="mass" placeholder="Mass in Kilogram" />
+        <select name="planet" id="planet">
+          <option value="none">--select planet--</option>
+          <option value="MERCURY">MERCURY</option>
+          <option value="VENUS">VENUS</option>
+          <option value="EARTH">EARTH</option>
+          <option value="MOON">MOON</option>
+          <option value="MARS">MARS</option>
+          <option value="JUPITER">JUPITER</option>
+          <option value="SATURN">SATURN</option>
+          <option value="URANUS">URANUS</option>
+          <option value="NEPTUNE">NEPTUNE</option>
+          <option value="PLUTO">PLUTO</option>
+        </select>
+
+        <button>Calculate weight</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="background">
+        <div class="inner-background"></div>
+        <img class="planet-image" />
+      </div>
+    </main>
+  </body>
+  <script src="index.js"></script>
+  <script>
+    let main = document.querySelector("main");
+    let calculateButton = document.querySelector("button");
+    let myInput = document.querySelector("#mass");
+    let planetDropdown = document.querySelector("#planet");
+    let background = document.querySelector(".background");
+    let innerBackground = document.querySelector(".inner-background");
+    let planetImg = document.querySelector(".planet-image");
+
+    planetImg.setAttribute("src", "./images/earth.png");
+
+    calculateButton.onclick = function () {
+      let existingAlertText = innerBackground.querySelector("p");
+
+      if (existingAlertText) {
+        existingAlertText.remove();
+      }
+      let alertText = document.createElement("p");
+
+      innerBackground.style.backgroundColor = "rgba(255, 255, 255 , 0.1)";
+      
+      background.style.justifyContent = "center";
+      background.style.alignItems = "center";
+
+      if (myInput.value == "" && planetDropdown.value == "none") {
+        alertText.innerText = "Mass is required";
+        alertText.style.color = "white";
+        planetImg.style.display = "none";
+
+        main.style.display = "flex";
+        main.style.justifyContent = "center";
+
+        background.style.padding = "40px";
+        background.style.width = "1200px";
+        background.style.display = "flex";
+
+        innerBackground.style.width = "50%";
+        innerBackground.style.padding = "10px";
+
+        innerBackground.appendChild(alertText);
+      } 
+      
+      else if (myInput.value !== "" && planetDropdown.value == "none") {
+        alertText.innerText = "You did not choose a planet yet";
+        planetImg.style.display = "none";
+
+        main.style.display = "flex";
+        main.style.justifyContent = "center";
+
+        background.style.padding = "40px";
+        background.style.width = "1200px";
+        background.style.display = "flex";
+
+        innerBackground.style.width = "50%";
+        innerBackground.style.padding = "10px";
+
+        innerBackground.appendChild(alertText);
+      } 
+      
+      else if (myInput.value !== "" && planetDropdown.value !== "none") {
+        
+        innerBackground.innerHTML = ''
+
+        let weight = document.createElement('div')
+        let weightText = document.createElement('p')
+
+        weight.style.width = '100px'
+        weight.style.height = '100px'
+        weight.style.borderRadius = '50%'
+        weight.style.backgroundColor = "rgba(255, 255, 255 , 0.2)"
+        weight.style.color = 'white';
+        weight.style.display = 'flex';
+        weight.style.justifyContent = 'center';
+        weight.style.alignItems = 'center';
+        weight.style.fontWeight = 'bold'
+
+        weightText.style.color = 'white'
+        weightText.style.fontSize = '25px'
+
+        planetImg.style.display = "block";
+        main.style.display = "flex";
+        main.style.justifyContent = "center";
+
+        background.style.padding = "40px";
+        background.style.width = "1200px";
+        background.style.display = "flex";
+        background.style.flexDirection = "row-reverse";
+        background.style.justifyContent = "normal";
+        background.style.alignItems = "flex-center";
+
+        innerBackground.style.width = "50%";
+        innerBackground.style.height = "200px";
+        innerBackground.style.padding = "10px";
+        innerBackground.style.display = 'flex'
+        innerBackground.style.flexDirection = 'column';
+        innerBackground.style.alignItems = 'center';
+        innerBackground.style.justifyContent = 'space-around';
+
+        innerBackground.appendChild(weightText)
+        innerBackground.appendChild(weight)
+
+        let planetsName = [
+          "Mercury",
+          "Venus",
+          "Earth",
+          "Moon",
+          "Mars",
+          "Jupiter",
+          "Saturn",
+          "Uranus",
+          "Neptune",
+          "Pluto",
+        ];
+        let selectedPlanet = planetDropdown.options[planetDropdown.selectedIndex].value;
+
+        for (let i = 0; i < planets.planetList.length; i++) {
+          if (selectedPlanet == planetsName[i].toUpperCase()) {
+            planetImg.setAttribute("src", planets.planetList[i].url);
+            
+            weight.innerText = `${(myInput.value * planets.planetList[i].g).toFixed(2) +' N'}`
+
+            weightText.innerText = 'The weight of the object on ' + planetsName[i].toUpperCase()
+          
+          }
+        }
+      } 
+      else {
+        console.log("hckfdvjkn");
+      }
+    };
+  </script>
+</html>
